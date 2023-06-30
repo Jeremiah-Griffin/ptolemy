@@ -25,3 +25,27 @@ impl PlaceNameId{
     }
 }
 
+#[derive(Serialize, Deserialize)]
+pub struct BoolResult{
+    is_err: bool,
+    val: bool,
+
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct DoubleResult{
+    is_err: bool,
+    val: f64,
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct IntResult{
+    is_err: bool,
+    val: i64,
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct StringResult{
+    is_err: bool,
+    val: String,
+}
