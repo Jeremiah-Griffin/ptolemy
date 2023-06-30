@@ -4,7 +4,6 @@ use serde::{Serialize, Deserialize};
 
 
 #[derive(Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
 ///if is_err map value must be empty.
 /// if not, the map is keyed by place names, and the values are that place's ID.
 ///
