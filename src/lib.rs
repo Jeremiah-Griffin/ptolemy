@@ -83,7 +83,7 @@ pub struct StringResult{
     val: String,
 }
 impl From<String> for StringResult{
-    fn from(value: impl Into<String>) -> Self {
+    fn from(value: String) -> Self {
         StringResult{is_err: false, val: value}
     }
 }
