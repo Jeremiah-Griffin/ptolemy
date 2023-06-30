@@ -3,7 +3,7 @@ use std::fmt::{Debug, Display};
 use serde::{Serialize, Deserialize};
 
 
-trait PtolemyFallible {
+pub trait PtolemyFallible {
     fn error() -> Self;
 }
 
