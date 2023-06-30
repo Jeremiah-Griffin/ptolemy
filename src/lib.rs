@@ -2,6 +2,11 @@ use std::error::Error;
 use std::fmt::{Debug, Display};
 use serde::{Serialize, Deserialize};
 
+
+trait PtolemyFallible {
+    fn error() -> Self;
+}
+
 #[derive(Serialize, Deserialize)]
 ///if is_err map value must be empty.
 /// if not, the map is keyed by place names, and the values are that place's ID.
@@ -13,35 +18,36 @@ pub struct PlaceNameId{
     pub is_err: bool,
     pub names_ids: Vec<(String, String)>,
 }
+impl PtolemyFallible for PlaceNameId{
+    fn error() -> Self{
+        PlaceNameId{is_err: true, names_ids: vec![]}
+    }
+}
+
 
 
 #[derive(Serialize, Deserialize)]
 pub struct BoolResult{
     is_err: bool,
     val: bool,
-
 }
-impl <E: Error> From<E> for BoolResult{
-    fn from(value: E) -> Self {
-        BoolResult{
-            is_err: true,
-            val: false,
-        }
+
+impl PtolemyFallible for BoolResult{
+    fn error() -> Self {
+        BoolResult{is_err: true, val: false}
     }
-
 }
+
 
 #[derive(Serialize, Deserialize)]
 pub struct DoubleResult{
     is_err: bool,
     val: f64,
 }
-impl <E: Error> From<E> for DoubleResult{
-    fn from(value: E) -> Self {
-        DoubleResult{
-            is_err: true,
-            val: 0.0,
-        }
+
+impl PtolemyFallible for DoubleResult{
+    fn error() -> Self {
+        DoubleResult{is_err: true, val: 0.0}
     }
 }
 
@@ -50,12 +56,9 @@ pub struct IntResult{
     is_err: bool,
     val: i64,
 }
-impl <E: Error> From<E> for IntResult{
-    fn from(value: E) -> Self {
-        IntResult{
-            is_err: true,
-            val: 0,
-        }
+impl PtolemyFallible for IntResult{
+    fn error() -> Self {
+        IntResult{is_err: true, val: 0}
     }
 }
 
@@ -64,12 +67,9 @@ pub struct StringResult{
     is_err: bool,
     val: String,
 }
-
-impl <E: Error> From<E> for StringResult{
-    fn from(value: E) -> Self {
-        StringResult{
-            is_err: true,
-            val: String::from(""),
-        }
+impl PtolemyFallible for StringResult{
+    fn error() -> Self {
+        StringResult{is_err: true, val: String::new()}
     }
 }
+
