@@ -1,7 +1,6 @@
-
-
+use std::error::Error;
+use std::fmt::{Debug, Display};
 use serde::{Serialize, Deserialize};
-
 
 #[derive(Serialize, Deserialize)]
 ///if is_err map value must be empty.
@@ -15,20 +14,20 @@ pub struct PlaceNameId{
     pub names_ids: Vec<(String, String)>,
 }
 
-impl PlaceNameId{
-    ///Check struct documentation explaining why buf isn't an Option<T>
-    pub fn new(is_err: bool, buf: impl Into<Vec<(String, String)>>) -> PlaceNameId {
-        PlaceNameId{
-            is_err,
-            names_ids: buf.into(),
-        }
-    }
-}
 
 #[derive(Serialize, Deserialize)]
 pub struct BoolResult{
     is_err: bool,
     val: bool,
+
+}
+impl <E: Error> From<E> for BoolResult{
+    fn from(value: E) -> Self {
+        BoolResult{
+            is_err: true,
+            val: false,
+        }
+    }
 
 }
 
@@ -37,15 +36,40 @@ pub struct DoubleResult{
     is_err: bool,
     val: f64,
 }
+impl <E: Error> From<E> for DoubleResult{
+    fn from(value: E) -> Self {
+        DoubleResult{
+            is_err: true,
+            val: 0.0,
+        }
+    }
+}
 
 #[derive(Serialize, Deserialize)]
 pub struct IntResult{
     is_err: bool,
     val: i64,
 }
+impl <E: Error> From<E> for IntResult{
+    fn from(value: E) -> Self {
+        IntResult{
+            is_err: true,
+            val: 0,
+        }
+    }
+}
 
 #[derive(Serialize, Deserialize)]
 pub struct StringResult{
     is_err: bool,
     val: String,
+}
+
+impl <E: Error> From<E> for StringResult{
+    fn from(value: E) -> Self {
+        StringResult{
+            is_err: true,
+            val: String::from(""),
+        }
+    }
 }
