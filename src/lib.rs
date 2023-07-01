@@ -1,5 +1,4 @@
 use serde::{Serialize, Deserialize};
-pub mod db;
 pub mod fallible_primitives;
 
 
