@@ -14,7 +14,7 @@ pub trait PtolemyFallible {
 /// it should be that true: is a successful acceptance of the previous request, and false
 /// is some sort of "soft" failure.
 pub struct ThothAck{
-    val: bool,
+    pub val: bool,
 }
 
 #[derive(Serialize, Deserialize)]
