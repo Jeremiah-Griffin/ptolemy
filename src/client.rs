@@ -5,7 +5,7 @@
 pub struct ClientConsumerModel {
     pub address: String,
     pub email: String,
-    pub country_code: u16,
+    pub country_code: i16,
     pub phone: i64,
     pub first_name: String,
     pub last_name: String,
@@ -14,7 +14,7 @@ pub struct ClientConsumerModel {
 pub struct ClientMerchantModel{
     pub address: String,
     pub email: String,
-    pub country_code: u16,
+    pub country_code: I16,
     pub phone: i64,
     pub name: String,
 }
