@@ -14,7 +14,7 @@ pub struct ClientConsumerModel {
 pub struct ClientMerchantModel{
     pub address: String,
     pub email: String,
-    pub country_code: I16,
+    pub country_code: i16,
     pub phone: i64,
     pub name: String,
 }
