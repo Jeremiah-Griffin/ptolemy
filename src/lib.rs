@@ -1,5 +1,6 @@
 use serde::{Serialize, Deserialize};
 pub mod fallible_primitives;
+mod client;
 
 
 pub trait PtolemyFallible {

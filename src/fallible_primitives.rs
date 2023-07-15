@@ -1,3 +1,8 @@
+///These types are intended for server to client communication where fallibility
+/// is expected. The is_err fields for these types represents not an error in the connection
+/// client to server, but of some "internal" state of the back-end (internal in this case meaning
+/// any operation handled by the back end, this may well include remote process calls to other APIs
+/// including google's or the shipping providers.)
 use serde::{Serialize, Deserialize};
 use crate::PtolemyFallible;
 
@@ -16,7 +21,6 @@ impl PtolemyFallible for BoolResult{
         BoolResult{is_err: true, val: false}
     }
 }
-
 
 #[derive(Serialize, Deserialize)]
 pub struct DoubleResult{
