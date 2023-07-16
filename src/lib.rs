@@ -8,12 +8,12 @@ pub trait PtolemyFallible {
 }
 
 pub trait PtolemyFallibleBlanket{
-    fn error_json(&self) -> String;
+    fn error_json() -> String;
 }
 
 impl  <T: PtolemyFallible + Serialize> PtolemyFallibleBlanket for T{
-    fn error_json(&self) -> String {
-        serde_json::to_string(&self).unwrap()
+    fn error_json() -> String {
+        serde_json::to_string(&T::error()).unwrap()
     }
 }
 
