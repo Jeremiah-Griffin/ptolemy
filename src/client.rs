@@ -4,6 +4,12 @@ use serde::{Serialize, Deserialize};
 ///manner which doesn't leak any sensitive data or implementation details.
 /// They should be generated from the client side and sent to the server side exclusively.
 
+
+
+
+///This train current exists to mark which types User::new() should be generic over.
+pub trait ClientUserModel{}
+
 #[derive(Serialize, Deserialize)]
 pub struct ClientConsumerModel {
     pub address: String,
@@ -13,6 +19,7 @@ pub struct ClientConsumerModel {
     pub first_name: String,
     pub last_name: String,
 }
+impl ClientUserModel for ClientConsumerModel{}
 
 #[derive(Serialize, Deserialize)]
 pub struct ClientMerchantModel{
@@ -22,4 +29,4 @@ pub struct ClientMerchantModel{
     pub phone: i64,
     pub name: String,
 }
-
+impl ClientUserModel for ClientMerchantModel{}
