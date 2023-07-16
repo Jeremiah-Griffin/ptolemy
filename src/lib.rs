@@ -4,7 +4,17 @@ pub mod client;
 
 
 pub trait PtolemyFallible {
-    fn error() -> Self;
+    fn error() -> Self where Self: Serialize;
+}
+
+pub trait PtolemyFallibleBlanket{
+    fn error_json(&self) -> String;
+}
+
+impl  <T: PtolemyFallible + Serialize> PtolemyFallibleBlanket for T{
+    fn error_json(&self) -> String {
+        serde_json::to_string(&self).unwrap()
+    }
 }
 
 
