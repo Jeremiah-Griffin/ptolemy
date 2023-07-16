@@ -8,8 +8,8 @@ use crate::PtolemyFallible;
 
 #[derive(Serialize, Deserialize)]
 pub struct BoolResult{
-    is_err: bool,
-    val: bool,
+    pub is_err: bool,
+    pub val:  bool,
 }
 impl From<bool> for BoolResult{
     fn from(value: bool) -> Self {
@@ -24,8 +24,8 @@ impl PtolemyFallible for BoolResult{
 
 #[derive(Serialize, Deserialize)]
 pub struct DoubleResult{
-    is_err: bool,
-    val: f64,
+    pub is_err: bool,
+    pub val:  f64,
 }
 impl From<f64> for DoubleResult{
     fn from(value: f64) -> Self {
@@ -40,8 +40,8 @@ impl PtolemyFallible for DoubleResult{
 
 #[derive(Serialize, Deserialize)]
 pub struct IntResult{
-    is_err: bool,
-    val: i64,
+    pub is_err: bool,
+    pub val:  i64,
 }
 impl From<i64> for IntResult{
     fn from(value: i64) -> Self {
@@ -56,8 +56,8 @@ impl PtolemyFallible for IntResult{
 
 #[derive(Serialize, Deserialize)]
 pub struct StringResult{
-    is_err: bool,
-    val: String,
+    pub is_err: bool,
+    pub val:  String,
 }
 impl From<String> for StringResult{
     fn from(value: String) -> Self {
