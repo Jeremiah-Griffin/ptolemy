@@ -70,3 +70,16 @@ impl PtolemyFallible for StringResult{
     }
 }
 
+#[derive(Serialize, Deserialize)]
+pub struct StringVecResult{
+    pub is_err: bool,
+    pub val: Vec<String>,
+}
+impl From<Vec<String>> for StringVecResult{
+    fn from(value: Vec<String>) -> Self{StringVecResult{is_err: false, val: value}}
+}
+impl PtolemyFallible for StringVecResult{
+    fn error() -> Self where Self: Serialize {
+        StringVecResult{is_err: true, val: Vec::new()}
+    }
+}
