@@ -11,7 +11,7 @@ use serde::{Serialize, Deserialize};
 pub trait ClientUserModel{}
 
 #[derive(Serialize, Deserialize)]
-pub struct ClientConsumerModel {
+pub struct ConsumerClientModel {
     pub address: String,
     pub email: String,
     pub country_code: i16,
@@ -19,14 +19,14 @@ pub struct ClientConsumerModel {
     pub first_name: String,
     pub last_name: String,
 }
-impl ClientUserModel for ClientConsumerModel{}
+impl ClientUserModel for ConsumerClientModel{}
 
 #[derive(Serialize, Deserialize)]
-pub struct ClientMerchantModel{
+pub struct MerchantClientModel{
     pub address: String,
     pub email: String,
     pub country_code: i16,
     pub phone: i64,
     pub name: String,
 }
-impl ClientUserModel for ClientMerchantModel{}
+impl ClientUserModel for MerchantClientModel{}
