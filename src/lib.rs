@@ -3,15 +3,15 @@ pub mod fallible_primitives;
 pub mod client;
 
 
-pub trait PtolemyFallible {
-    fn error() -> Self where Self: Serialize;
+pub trait PtolemyFallible: Serialize{
+    fn error() -> Self;
 }
 
 pub trait PtolemyFallibleBlanket{
     fn error_json() -> String;
 }
 
-impl  <T: PtolemyFallible + Serialize> PtolemyFallibleBlanket for T{
+impl  <T: PtolemyFallible> PtolemyFallibleBlanket for T{
     fn error_json() -> String {
         serde_json::to_string(&T::error()).unwrap()
     }
@@ -42,5 +42,8 @@ impl PtolemyFallible for PlaceNameId{
     fn error() -> Self{
         PlaceNameId{is_err: true, names_ids: vec![]}
     }
+}
+impl From<Vec<(String, String)>> for PlaceNameId{
+    fn from(value: Vec<(String, String)>) -> Self {PlaceNameId{is_err: false,  names_ids: value }}
 }
 
