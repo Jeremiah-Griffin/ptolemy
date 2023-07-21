@@ -18,7 +18,7 @@ impl  <T: PtolemyFallible> PtolemyFallibleBlanket for T{
 }
 
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 ///Actix requires a response no matter what. The value
 /// of "val" is somewhat up to the caller of this function. Usually,
 /// it should be that true: is a successful acceptance of the previous request, and false
@@ -27,7 +27,7 @@ pub struct ThothAck{
     pub val: bool,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 ///if is_err map value must be empty.
 /// if not, the map is keyed by place names, and the values are that place's ID.
 ///

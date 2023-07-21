@@ -6,7 +6,7 @@
 use serde::{Serialize, Deserialize};
 use crate::PtolemyFallible;
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct BoolResult{
     pub is_err: bool,
     pub val:  bool,
@@ -22,7 +22,7 @@ impl PtolemyFallible for BoolResult{
     }
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct DoubleResult{
     pub is_err: bool,
     pub val:  f64,
@@ -38,7 +38,7 @@ impl PtolemyFallible for DoubleResult{
     }
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct IntResult{
     pub is_err: bool,
     pub val:  i64,
@@ -54,7 +54,7 @@ impl PtolemyFallible for IntResult{
     }
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct StringResult{
     pub is_err: bool,
     pub val:  String,
@@ -70,7 +70,7 @@ impl PtolemyFallible for StringResult{
     }
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct StringVecResult{
     pub is_err: bool,
     pub val: Vec<String>,

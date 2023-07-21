@@ -10,7 +10,7 @@ use serde::{Serialize, Deserialize};
 ///This train current exists to mark which types User::new() should be generic over.
 pub trait ClientUserModel{}
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct ConsumerClientModel {
     pub address: String,
     pub email: String,
@@ -21,7 +21,7 @@ pub struct ConsumerClientModel {
 }
 impl ClientUserModel for ConsumerClientModel{}
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct MerchantClientModel{
     pub address: String,
     pub email: String,
