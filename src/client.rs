@@ -1,5 +1,6 @@
 use geoutils::Location;
 use serde::{Serialize, Deserialize};
+use chrono::NaiveDateTime;
 
 ///These types are used to represent mostly database models in a
 ///manner which doesn't leak any sensitive data or implementation details.
@@ -41,4 +42,35 @@ pub struct OrderRequest {
     pub sixty_kg_bags_coffee: u32,
     pub sixty_kg_bags_scraps: u32,
     pub consumer_location: Location,
+}
+
+///This is the state of the transaction as stored in the DB. This is *not* a comprehensive
+/// list of states, for example, those which would be viewed on the front end. States such
+/// as whether the
+#[derive(Serialize, Deserialize, Clone, Debug)]
+pub enum TransactionState{
+    ///The order has been received by thoth and is being processed
+    /// and batched for the couriers.
+    Received,
+    ///The order has been paired with all the merchants and will  be shipped
+    ///once courier(s) are dispatched.
+    Processing,
+    ///The order has been shipped and is expected to arrive at the
+    /// enclosed NaiveDateTime,
+    Shipped(NaiveDateTime),
+    ///The order was delivered at the enclosed NaiveDateTime,
+    Delivered(NaiveDateTime),
+    ///The order was cancelled by the consumer
+    Cancelled,
+    ///The order was refunded to the consumer
+    Refunded,
+    ///Thoth was not able to complete the order for some reason.
+    ///Maybe not enough merchants signed on,
+    ///maybe no driver accepted the order within some period of time.
+    ///
+    ///This should not be used for cases that can be fixed with a retry, such as
+    /// a driver cancelling or somesuch. THey should only be used for truly impossible to
+    /// recover from scenarios.
+    CouldNotComplete
+
 }
