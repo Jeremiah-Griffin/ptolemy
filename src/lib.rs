@@ -47,6 +47,7 @@ impl From<Vec<(String, String)>> for PlaceNameId{
     fn from(value: Vec<(String, String)>) -> Self {PlaceNameId{is_err: false,  names_ids: value }}
 }
 
+/*
 #[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct Transaction{
     pub is_err: bool,
@@ -66,4 +67,4 @@ impl PtolemyFallible for Transaction{
         }
     }
 }
-
+*/

@@ -48,16 +48,15 @@ pub struct OrderRequest {
 /// list of states, for example, those which would be viewed on the front end. States such
 /// as whether the
 #[derive(Serialize, Deserialize, Clone, Debug)]
-pub enum TransactionState{
+pub enum TransactionStateKind{
     ///The order has been received by thoth and is being processed
     /// and batched for the couriers.
     Received,
     ///The order has been paired with all the merchants and will  be shipped
     ///once courier(s) are dispatched.
     Processing,
-    ///The order has been shipped and is expected to arrive at the
-    /// enclosed NaiveDateTime,
-    Shipped(NaiveDateTime),
+    ///The order has was shipped at idx 0, and is expected to arrive at idx 1.
+    Shipped(NaiveDateTime, NaiveDateTime),
     ///The order was delivered at the enclosed NaiveDateTime,
     Delivered(NaiveDateTime),
     ///The order was cancelled by the consumer
