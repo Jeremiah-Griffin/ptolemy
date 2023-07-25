@@ -36,6 +36,7 @@ pub struct MerchantClientModel{
 impl ClientUserModel for MerchantClientModel{}
 
 ///Submitted to the server
+#[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct OrderRequest {
     pub sixty_kg_bags_coffee: u32,
     pub sixty_kg_bags_scraps: u32,
