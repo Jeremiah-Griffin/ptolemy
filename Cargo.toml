@@ -8,3 +8,4 @@ edition = "2021"
 serde = {version = "1.0.164", features = ["derive"]}
 diesel = "2.1.0"
 serde_json = "1.0.103"
+geoutils = "0.5.1"
