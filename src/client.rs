@@ -59,7 +59,7 @@ pub enum TransactionStateKind{
     Shipped(NaiveDateTime, NaiveDateTime),
     ///The order was delivered at the enclosed NaiveDateTime,
     /// (DateTime of delivery is handled in the TransactionState struct)
-    Delivered,
+    Delivered(NaiveDateTime),
     ///The order was cancelled by the consumer
     Cancelled,
     ///The order was refunded to the consumer
