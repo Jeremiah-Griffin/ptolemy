@@ -55,7 +55,7 @@ pub enum TransactionStateKind{
     ///The order has been paired with all the merchants and will  be shipped
     ///once courier(s) are dispatched.
     Processing,
-    ///The order has was shipped at idx 0, and is expected to arrive at idx 1.
+    ///The order has was shipped         at idx 0, and is expected to arrive at idx 1.
     Shipped(NaiveDateTime, NaiveDateTime),
     ///The order was delivered at the enclosed NaiveDateTime,
     /// (DateTime of delivery is handled in the TransactionState struct)
@@ -74,3 +74,4 @@ pub enum TransactionStateKind{
     CouldNotComplete
 
 }
+
