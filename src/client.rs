@@ -38,8 +38,8 @@ impl ClientUserModel for MerchantClientModel{}
 ///Submitted to the server
 #[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct OrderRequest {
-    pub sixty_kg_bags_coffee: u32,
-    pub sixty_kg_bags_scraps: u32,
+    pub sixty_kg_bags_coffee: i16,
+    pub sixty_kg_bags_scraps: i16,
     pub consumer_location: Location,
 }
 
@@ -82,7 +82,8 @@ pub enum TransactionStateKind{
 #[derive(Serialize,Deserialize, Clone,Debug)]
 pub struct MerchantBid{
     ///For rewrite: switch to Uuid
+    ///This is the Uuid of the
     pub id: String,
-    pub sixty_kg_bags_coffee_grounds: u8,
-    pub sixty_kg_bags_grocery_scraps: u8,
+    pub sixty_kg_bags_coffee_grounds: i16,
+    pub sixty_kg_bags_grocery_scraps: i16,
 }
