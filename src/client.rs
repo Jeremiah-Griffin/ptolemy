@@ -75,3 +75,11 @@ pub enum TransactionStateKind{
 
 }
 
+
+#[derive(Serialize,Deserialize, Clone,Debug)]
+pub struct MerchantBid{
+    ///For rewrite: switch to Uuid
+    pub id: String,
+    pub sixty_kg_bags_coffee_grounds: u8,
+    pub sixty_kg_bags_grocery_scraps: u8,
+}
