@@ -22,7 +22,7 @@ pub struct OrderDescriptor{
 
 
 
-#[derive(Serialize, Deserialize, Clone, Debug)]
+#[derive(Serialize, Deserialize, Clone, Debug, Ord, Eq, PartialEq, PartialOrd)]
 pub struct OrderModeller{
     pub is_err: bool,
     kind: OrderModellerKind,
@@ -30,8 +30,9 @@ pub struct OrderModeller{
     pub sixty_kg_bags_scraps: i16,
 }
 
+
 ///For rewrite: swithc to typestate pattern
-#[derive(Serialize, Deserialize, Clone, Debug)]
+#[derive(Serialize, Deserialize, Clone, Debug, Ord, Eq, PartialEq, PartialOrd)]
 pub enum OrderModellerKind {
     ///Consumer to server posting a new order to be bid on by merchants
     ConsumerRequest,
