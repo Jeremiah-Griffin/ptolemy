@@ -35,13 +35,6 @@ pub struct MerchantClientModel{
 }
 impl ClientUserModel for MerchantClientModel{}
 
-///Submitted to the server
-#[derive(Serialize, Deserialize, Clone, Debug)]
-pub struct OrderRequest {
-    pub consumer_id: String,
-    pub sixty_kg_bags_coffee: i16,
-    pub sixty_kg_bags_scraps: i16,
-}
 
 ///This is the state of the transaction as stored in the DB. This is *not* a comprehensive
 /// list of states, for example, those which would be viewed on the front end. States such
@@ -79,11 +72,3 @@ pub enum TransactionStateKind{
 }
 
 
-#[derive(Serialize,Deserialize, Clone,Debug)]
-pub struct MerchantBid{
-    ///For rewrite: switch to Uuid
-    ///This is the Uuid of the
-    pub id: String,
-    pub sixty_kg_bags_coffee_grounds: i16,
-    pub sixty_kg_bags_grocery_scraps: i16,
-}

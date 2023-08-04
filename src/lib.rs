@@ -47,25 +47,3 @@ impl PtolemyFallible for PlaceNameId{
 impl From<Vec<(String, String)>> for PlaceNameId{
     fn from(value: Vec<(String, String)>) -> Self {PlaceNameId{is_err: false,  names_ids: value }}
 }
-
-/*
-#[derive(Serialize, Deserialize, Clone, Debug)]
-pub struct Transaction{
-    pub is_err: bool,
-    pub placed: String,
-    pub fulfilled: String,
-    pub sixty_kg_bags_coffee: u32,
-    pub sixty_kg_bags_scraps: u32,
-}
-impl PtolemyFallible for Transaction{
-    fn error() -> Self {
-        Transaction{
-            is_err: true,
-            placed: String::default(),
-            fulfilled: String::default(),
-            sixty_kg_bags_coffee: 0,
-            sixty_kg_bags_scraps: 0,
-        }
-    }
-}
-*/
