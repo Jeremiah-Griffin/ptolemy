@@ -23,7 +23,7 @@ pub struct OrderDescriptor{
 
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
-pub struct OrderModeler{
+pub struct OrderModeller{
     pub is_err: bool,
     kind: OrderModellerKind,
     pub sixty_kg_bags_coffe: i16,
