@@ -6,9 +6,15 @@ use crate::client::TransactionStateKind;
 /// client without leaking too much data.
 #[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct ClientTransaction{
-    is_err: bool,
-    id: String,
-    placed: NaiveDateTime,
-    fulfilled: Option<NaiveDateTime>,
-    state: TransactionStateKind,
+    pub is_err: bool,
+    pub id: String,
+    pub placed: NaiveDateTime,
+    pub fulfilled: Option<NaiveDateTime>,
+    pub state: TransactionStateKind,
+}
+
+pub struct OrderDescriptor{
+    pub is_err: bool,
+    pub sixty_kg_bags_coffee: i16,
+    pub sixty_kg_bags_scraps: i16,
 }

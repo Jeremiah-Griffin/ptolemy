@@ -38,9 +38,9 @@ impl ClientUserModel for MerchantClientModel{}
 ///Submitted to the server
 #[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct OrderRequest {
+    pub consumer_id: String,
     pub sixty_kg_bags_coffee: i16,
     pub sixty_kg_bags_scraps: i16,
-    pub consumer_location: Location,
 }
 
 ///This is the state of the transaction as stored in the DB. This is *not* a comprehensive
