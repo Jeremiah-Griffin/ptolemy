@@ -34,8 +34,26 @@ pub struct OrderModeller{
     pub sixty_kg_bags_scraps: i16,
 }
 
+impl OrderModeller{
+    ///Returns err is the order is not a ConsumerRequest
+    pub fn try_consumer_request(&self) -> anyhow::Result<()>{
 
-///For rewrite: swithc to typestate pattern
+        match self.kind == OrderModellerKind::ConsumerRequest{
+            true => Ok(()),
+            false => Err(anyhow::Error::msg("OrderModeller was not a consumer request."))
+        }
+    }
+
+    pub fn try_merchant_bid(&self) -> anyhow::Result<()>{
+        match self.kind == OrderModellerKind::MerchantBid{
+            true => Ok(()),
+            false => Err(anyhow::Error::msg("OrderModeller was not a consumer request."))
+        }
+    }
+}
+
+
+///For rewrite: switch to typestate pattern
 #[derive(Serialize, Deserialize, Clone, Debug, Ord, Eq, PartialEq, PartialOrd)]
 pub enum OrderModellerKind {
     ///Consumer to server posting a new order to be bid on by merchants
