@@ -29,7 +29,7 @@ pub struct OrderModeller{
     ///id of the "owner" of this modeller.
     ///if it is a ConsumerRequest, it is the id of the consumer.
     ///if it is a MerchantBid it is the id of th merchant.
-    pub id: String,
+    pub user_id: String,
     pub sixty_kg_bags_coffe: i16,
     pub sixty_kg_bags_scraps: i16,
 }
