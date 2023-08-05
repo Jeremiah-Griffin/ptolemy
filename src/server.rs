@@ -30,7 +30,7 @@ pub struct OrderModeller{
     ///if it is a ConsumerRequest, it is the id of the consumer.
     ///if it is a MerchantBid it is the id of th merchant.
     pub user_id: String,
-    pub sixty_kg_bags_coffe: i16,
+    pub sixty_kg_bags_coffee: i16,
     pub sixty_kg_bags_scraps: i16,
 }
 
@@ -49,6 +49,11 @@ impl OrderModeller{
             true => Ok(()),
             false => Err(anyhow::Error::msg("OrderModeller was not a consumer request."))
         }
+    }
+
+    ///returns true if these orders contain the same counts of material.
+    pub fn is_order_equal(&self, other: &OrderModeller) -> bool{
+        (self.sixty_kg_bags_coffee, self.sixty_kg_bags_scraps) == (other.sixty_kg_bags_coffee, other.sixty_kg_bags_scraps)
     }
 }
 
