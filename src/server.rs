@@ -22,7 +22,7 @@ pub struct OrderDescriptor{
 
 
 
-#[derive(Serialize, Deserialize, Clone, Debug, Ord, Eq, PartialEq, PartialOrd)]
+#[derive(Serialize, Deserialize, Clone, Debug, Ord, Eq, PartialEq, PartialOrd, Hash)]
 pub struct OrderModeller{
     pub is_err: bool,
     pub kind: OrderModellerKind,
@@ -54,7 +54,7 @@ impl OrderModeller{
 
 
 ///For rewrite: switch to typestate pattern
-#[derive(Serialize, Deserialize, Clone, Debug, Ord, Eq, PartialEq, PartialOrd)]
+#[derive(Serialize, Deserialize, Clone, Debug, Ord, Eq, PartialEq, PartialOrd, Hash)]
 pub enum OrderModellerKind {
     ///Consumer to server posting a new order to be bid on by merchants
     ConsumerRequest,
