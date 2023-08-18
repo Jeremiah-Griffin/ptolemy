@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+
+//Google place API
+//https://developers.google.com/maps/documentation/places/web-service/overview
+service Place{
+  rpc autocomplete_municipality(QueryText) returns (AutocompleteSuggestion);
+  rpc autocomplete_address(QueryText) returns (AutocompleteSuggestion);
+}
+message QueryText{
+  string text = 1;
+}
+
+message AutocompleteSuggestion{
+  repeated string suggestions = 1;
+}

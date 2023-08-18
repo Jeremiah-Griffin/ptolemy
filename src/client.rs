@@ -49,13 +49,6 @@ pub enum TransactionStateKind{
     Processing,
     Shipped,
     Delivered,
-    /*
-    ///The order has was shipped at idx 0, and is expected to arrive at idx 1.
-    Shipped(NaiveDateTime, NaiveDateTime),
-
-    ///The order was delivered at the enclosed NaiveDateTime,
-    /// (DateTime of delivery is handled in the TransactionState struct)
-    Delivered(NaiveDateTime),*/
     ///The order was cancelled by the consumer
     Cancelled,
     ///The order was refunded to the consumer

@@ -1,0 +1,164 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+
+
+service ThothApiService{
+  rpc delete_bid(DeleteBidRequest) returns (DeleteBidResponse);
+  rpc delete_order(DeleteOrderRequest) returns (DeleteOrderResponse);
+  rpc is_in_service_area(IsInServiceAreaRequest) returns (IsInServiceAreaResponse);
+  rpc orders_eligible_to_bid(OrdersEligibleToBidRequest) returns (OrdersEligibleToBidResponse);
+  rpc pending_consumer_orders(PendingConsumerOrdersRequest) returns (PendingConsumerOrdersResponse);
+  rpc push_bid(PushBidRequest) returns (PushBidResponse);
+  rpc push_order(PushOrderRequest) returns (PushOrderResponse);
+  rpc replace_bid(ReplaceBidRequest) returns (ReplaceBidResponse);
+  rpc signup_consumer(SignupConsumerRequest) returns (SignupConsumerResponse);
+  rpc new_interested_user(NewInterestedUserRequest) returns (NewInterestedUserResponse);
+}
+
+message DeleteBidRequest{
+  string merchant_id = 1;
+  string order_id = 2;
+}
+
+message DeleteBidResponse{
+  bool success = 1;
+}
+
+message DeleteOrderRequest{
+  string order_id  = 1;
+}
+
+message DeleteOrderResponse{
+  bool success = 1;
+
+}
+
+
+message IsInServiceAreaRequest{
+  string place_id = 1;
+}
+
+message IsInServiceAreaResponse{
+  bool is_in_service_area = 1;
+}
+
+message OrdersEligibleToBidRequest{
+  string merchant_id = 1;
+}
+
+message OrdersEligibleToBidResponse{
+  repeated OrderModeller orders = 1;
+}
+
+message PendingConsumerOrdersRequest{
+  string consumer_id = 1;
+}
+
+
+message PendingConsumerOrdersResponse{
+  repeated OrderModeller orders = 1;
+}
+
+message PushBidRequest{
+  OrderModeller bid = 1;
+  string target_order = 2;
+}
+
+message PushBidResponse{
+  bool success = 1;
+}
+
+message PushOrderRequest{
+  OrderModeller new_order = 1;
+}
+
+message PushOrderResponse{
+  bool success = 1;
+}
+
+message ReplaceBidRequest{
+  OrderModeller new_bid = 1;
+  string target_order_id = 2;
+}
+
+message ReplaceBidResponse{
+  bool success=  1;
+}
+
+message SignupConsumerRequest{
+ ConsumerClientModel new_consumer_model = 1;
+ string password = 2;
+}
+
+message SignupConsumerResponse{
+  bool success = 1;
+
+}
+
+message NewInterestedUserRequest{
+  string email = 1;
+  string place_name = 2;
+}
+
+message NewInterestedUserResponse{
+  bool success = 1;
+}
+
+
+
+message ConsumerClientModel{
+  string address = 1;
+  string email = 2;
+  //logically, country_code and phone_number can't be negative
+  //but sqlite only supports signed ints
+
+  //country_code is represented as an i16 on the backend
+  //as the itu specifies that a country code is 4 (?) digits
+  int32 country_code = 3;
+  int64 phone_number = 4;
+  string first_name = 5;
+  string last_name = 6;
+}
+
+message MerchantClientModel{
+  string address = 1;
+  string email = 2;
+  //logically, country_code and phone_number can't be negative
+  //but sqlite only supports signed ints
+
+  //country_code is represented as an i16 on the backend
+  //as the itu specifies that a country code is 4 (?) digits
+  int32 country_code = 3;
+  int64 phone_number = 4;
+  string name = 5;
+}
+
+message ClientTransaction{
+  //this is the Uuid v7 id of the transaction itself
+  //this is not persisted in the database currently, but is instead
+  //used by the bidding service (maybe others in the future) to keep track
+  //of individual orders.
+  string id = 1;
+  timestamp placed = 2;
+  optional uint64 fulfilled = 3;
+  //flexbuf encoded TransactionStateKind
+  TransactionStateKind state = 4;
+}
+
+enum TransactionStateKind{
+  Received = 0;
+  Processing = 1;
+  Shipped = 2;
+  Delivered = 3;
+  Cancelled = 4;
+  Refunded = 5;
+  CouldNotComplete = 6;
+}
+
+message OrderModeller{
+  string user_id = 1;
+  optional uint32 sixty_kg_bags_coffee = 2;
+  optional uint32 sixty_kg_bags_scraps = 3;
+}
