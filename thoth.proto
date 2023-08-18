@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-import "google/protobuf/timestamp.proto";
+import "commonly_used_types/timestamp.proto";
 
 
 
