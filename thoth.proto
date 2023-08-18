@@ -1,7 +1,8 @@
 syntax = "proto3";
-
-import "commonly_used_types/timestamp.proto";
-
+//all new proto files must have a package name
+//to use with tonic::include_proto() or else the generated
+//code will be put into an _.rs file.
+package thoth;
 
 
 service ThothApiService{
@@ -135,13 +136,26 @@ message MerchantClientModel{
   string name = 5;
 }
 
+message Timestamp {
+  // Represents seconds of UTC time since Unix epoch
+  // 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
+  // 9999-12-31T23:59:59Z inclusive.
+  int64 seconds = 1;
+
+  // Non-negative fractions of a second at nanosecond resolution. Negative
+  // second values with fractions must still have non-negative nanos values
+  // that count forward in time. Must be from 0 to 999,999,999
+  // inclusive.
+  int32 nanos = 2;
+}
+
 message ClientTransaction{
   //this is the Uuid v7 id of the transaction itself
   //this is not persisted in the database currently, but is instead
   //used by the bidding service (maybe others in the future) to keep track
   //of individual orders.
   string id = 1;
-  timestamp placed = 2;
+  Timestamp placed = 2;
   optional uint64 fulfilled = 3;
   //flexbuf encoded TransactionStateKind
   TransactionStateKind state = 4;

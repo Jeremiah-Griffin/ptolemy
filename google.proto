@@ -1,5 +1,9 @@
 syntax = "proto3";
 
+//all new proto files must have a package name
+//to use with tonic::include_proto() or else the generated
+//code will be put into an _.rs file.
+package google;
 
 //Google place API
 //https://developers.google.com/maps/documentation/places/web-service/overview
