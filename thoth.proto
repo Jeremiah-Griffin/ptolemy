@@ -5,7 +5,7 @@ syntax = "proto3";
 package thoth;
 
 
-service ThothApiService{
+service Thoth{
   rpc delete_bid(DeleteBidRequest) returns (DeleteBidResponse);
   rpc delete_order(DeleteOrderRequest) returns (DeleteOrderResponse);
   rpc is_in_service_area(IsInServiceAreaRequest) returns (IsInServiceAreaResponse);
@@ -64,7 +64,7 @@ message PendingConsumerOrdersResponse{
 
 message PushBidRequest{
   OrderModeller bid = 1;
-  string target_order = 2;
+  string target_order_id = 2;
 }
 
 message PushBidResponse{
@@ -156,7 +156,7 @@ message ClientTransaction{
   //of individual orders.
   string id = 1;
   Timestamp placed = 2;
-  optional uint64 fulfilled = 3;
+  optional Timestamp fulfilled = 3;
   //flexbuf encoded TransactionStateKind
   TransactionStateKind state = 4;
 }

@@ -8,13 +8,18 @@ package google;
 //Google place API
 //https://developers.google.com/maps/documentation/places/web-service/overview
 service Place{
-  rpc autocomplete_municipality(QueryText) returns (AutocompleteSuggestion);
-  rpc autocomplete_address(QueryText) returns (AutocompleteSuggestion);
+  rpc autocomplete_municipality(QueryText) returns (AutocompleteMunicipalityResponse);
+  rpc autocomplete_address(QueryText) returns (AutocompleteAddressResponse);
 }
 message QueryText{
   string text = 1;
 }
 
-message AutocompleteSuggestion{
-  repeated string suggestions = 1;
+message AutocompleteMunicipalityResponse{
+  repeated string descriptions = 1;
+  repeated string place_ids = 2;
+}
+
+message AutocompleteAddressResponse{
+  repeated string addresses = 1;
 }
