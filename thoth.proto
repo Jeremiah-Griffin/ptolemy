@@ -66,9 +66,10 @@ message MerchantAccountPageRequest{
 }
 
 message MerchantAccountPageResponse{
-  OrderModeller inventory  = 1;
-  Timestamp creation = 2;
+  Timestamp creation = 1;
+  MerchantClientModel model = 2;
   repeated ClientTransaction orders = 3;
+
 }
 
 message OrdersEligibleToBidRequest{
