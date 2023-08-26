@@ -16,6 +16,22 @@ service Thoth{
   rpc replace_bid(ReplaceBidRequest) returns (ReplaceBidResponse);
   rpc signup_consumer(SignupConsumerRequest) returns (SignupConsumerResponse);
   rpc new_interested_user(NewInterestedUserRequest) returns (NewInterestedUserResponse);
+
+
+  rpc update_inventory(OrderModeller) returns (UpdateInventoryResponse);
+  rpc merchant_account_page(MerchantAccountPageRequest) returns (MerchantAccountPageResponse);
+  rpc consumer_account_page(ConsumerAccountPageRequest) returns (ConsumerAccountPageResponse);
+}
+
+
+message ConsumerAccountPageRequest{
+  string id = 1;
+
+}
+
+message ConsumerAccountPageResponse{
+  Timestamp creation = 1;
+  repeated ClientTransaction orders = 2;
 }
 
 message DeleteBidRequest{
@@ -43,6 +59,16 @@ message IsInServiceAreaRequest{
 
 message IsInServiceAreaResponse{
   bool is_in_service_area = 1;
+}
+
+message MerchantAccountPageRequest{
+  string id = 1;
+}
+
+message MerchantAccountPageResponse{
+  OrderModeller inventory  = 1;
+  Timestamp creation = 2;
+  repeated ClientTransaction orders = 3;
 }
 
 message OrdersEligibleToBidRequest{
@@ -98,6 +124,10 @@ message SignupConsumerResponse{
 
 }
 
+message UpdateInventoryResponse{
+  bool success = 1;
+}
+
 message NewInterestedUserRequest{
   string email = 1;
   string place_name = 2;
@@ -106,7 +136,6 @@ message NewInterestedUserRequest{
 message NewInterestedUserResponse{
   bool success = 1;
 }
-
 
 
 message ConsumerClientModel{
