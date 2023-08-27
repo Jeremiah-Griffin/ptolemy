@@ -67,8 +67,9 @@ message MerchantAccountPageRequest{
 
 message MerchantAccountPageResponse{
   Timestamp creation = 1;
-  MerchantClientModel model = 2;
-  repeated ClientTransaction orders = 3;
+  OrderModeller inventory = 2;
+  MerchantClientModel model = 3;
+  repeated ClientTransaction orders = 4;
 
 }
 
