@@ -188,17 +188,16 @@ message ClientTransaction{
   Timestamp placed = 2;
   optional Timestamp fulfilled = 3;
   //flexbuf encoded TransactionStateKind
-  TransactionStateKind state = 4;
+  TransactionState state = 4;
 }
 
-enum TransactionStateKind{
+enum TransactionState{
   Received = 0;
   Processing = 1;
   Shipped = 2;
   Delivered = 3;
   Cancelled = 4;
   Refunded = 5;
-  CouldNotComplete = 6;
 }
 
 message OrderModeller{
